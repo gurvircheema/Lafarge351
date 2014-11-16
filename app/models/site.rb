@@ -5,4 +5,5 @@ class Site < ActiveRecord::Base
 	has_many :orientations
 
 	belongs_to :manager
+	has_many :logins
 end

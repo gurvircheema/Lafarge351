@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116025348) do
+ActiveRecord::Schema.define(version: 20141116190600) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -25,6 +25,25 @@ ActiveRecord::Schema.define(version: 20141116025348) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "logins", force: true do |t|
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "logins", ["email"], name: "index_logins_on_email", unique: true, using: :btree
+  add_index "logins", ["reset_password_token"], name: "index_logins_on_reset_password_token", unique: true, using: :btree
 
   create_table "orientation_hazards", force: true do |t|
     t.integer  "orientation_id"
@@ -64,6 +83,7 @@ ActiveRecord::Schema.define(version: 20141116025348) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "login_id"
   end
 
 end
