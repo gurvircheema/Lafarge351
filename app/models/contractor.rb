@@ -1,0 +1,2 @@
+class Contractor < Worker
+end
