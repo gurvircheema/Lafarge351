@@ -5,5 +5,5 @@ class Login < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :site
-
+  delegates: :email, to: :loggable
 end
