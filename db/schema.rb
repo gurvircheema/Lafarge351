@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141116210114) do
+ActiveRecord::Schema.define(version: 20141116205951) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141116210114) do
 
   create_table "logins", force: true do |t|
     t.integer  "site_id"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "encrypted_password",  default: "", null: false
@@ -68,7 +69,6 @@ ActiveRecord::Schema.define(version: 20141116210114) do
     t.integer  "manager_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
   end
 
   create_table "workers", force: true do |t|
