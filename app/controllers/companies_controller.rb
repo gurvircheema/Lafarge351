@@ -1,17 +1,43 @@
 class CompaniesController < ApplicationController
-	def index
-	end
+  before_action :set_company, only: [:show, :edit, :update, :destroy]
 
-	def new
-	end
+  respond_to :html
 
-	def create
-	end
+  def index
+    @companies = Company.all
+  end
 
-	def delete
-	end
+  def show
+  end
 
-	private
-		def company_params
-		end
+  def new
+    @company = Company.new
+  end
+
+  def edit
+  end
+
+  def create
+    @company = Company.new(company_params)
+    @company.save
+    redirect_to companies_path
+  end
+
+  def update
+    @company.update(company_params)
+  end
+
+  def destroy
+    @company.destroy
+    redirect_to companies_path
+  end
+
+  private
+    def set_company
+      @company = Company.find(params[:id])
+    end
+
+    def company_params
+      params.require(:company).permit(:name, :address)
+    end
 end
