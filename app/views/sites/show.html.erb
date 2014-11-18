@@ -11,19 +11,17 @@
 </p>
 
 <p>
-  <strong>Hazards on this site:</strong>
   <table>
     <thead>
       <tr>
-        <th colspan="3"></th>
-        <th colspan="3"></th>
+        <th colspan="3">Hazards on this site</th>
       </tr>
     </thead>
 
     <tbody>
       <% @hazards.each do |hazard| %>
           <tr>
-            <td><%= hazard.name %></td>
+            <td width="500"><%= hazard.name %></td>
             <td><%= link_to 'Show', hazard %></td>
             <td><%= link_to 'Destroy', hazard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
@@ -32,28 +30,5 @@
   </table>
 </p>
 
-<p>
-  <table>
-    <thead>
-      <tr>
-        <th>Worker</th>
-        <th>Comment</th>
-        <th colspan="6"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <strong>Orientations on this site:</strong>
-      <% @orientations.each do |orientation| %>
-          <tr>
-            <td><%= orientation.worker %></td>
-            <td><%= orientation.comment %></td>
-            <td><%= link_to 'Show', orientation %></td>
-            <td><%= link_to 'Destroy', orientation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-      <% end %>
-    </tbody>
-  </table>
-</p>
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>

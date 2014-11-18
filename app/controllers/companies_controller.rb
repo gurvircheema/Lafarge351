@@ -19,8 +19,8 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    if @site.save
-      redirect_to site_path(@site)
+    if @company.save
+      redirect_to company_path(@company)
       flash[:notice] = "New company added"
     else
       flash.now[:error] = "Something went wrong"

@@ -19,9 +19,9 @@ class HazardsController < ApplicationController
 
   def create
     @hazard = Hazard.new(hazard_params)
-    if @site.save
+    if @hazard.save
       flash[:notice] = "New hazard added"
-      redirect_to site_path(@site)
+      redirect_to hazard_path(@hazard)
     else
       flash.now[:error] = "Something went wrong"
       render 'new'

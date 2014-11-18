@@ -17,10 +17,13 @@ class SitesController < ApplicationController
   end
 
   def edit
+    @allhazards = Hazard.all
   end
 
   def create
     @site = Site.new(site_params)
+    @hazards = @site.hazards
+
     if @site.save
       flash[:notice] = "New site added"
       redirect_to site_path(@site)
@@ -40,6 +43,11 @@ class SitesController < ApplicationController
     @site.destroy
     flash[:notice] = "Site removed"
     redirect_to sites_path
+  end
+
+  def add_hazard
+    Hazard.where(id: params[:hazard_ids]).update_all(available: true)
+    redirect_to site_path(@site)
   end
 
   private

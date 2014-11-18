@@ -21,9 +21,19 @@
     <%= f.select :manager_id, Manager.all.map {|manager| [manager.first_name,manager.id]}, :selected => f.object.manager_id.to_i %>
   </div>
 
-   <div class="field">
+  <div class="field">
     <%= f.label :hazards %><br>
-    <%=  %>
+    <%= form_tag hazards_path, :method => :put do %>
+    <ol>
+    <% for hazard in @allhazards %>
+      <li>
+        <%= check_box_tag "hazard_ids[]", hazard.id %>
+        <%= hazard.name %>
+      </li>
+    <% end %>
+    </ol>
+    <%= submit_tag "Add hazards" %>
+  <% end %>
   </div>
 
   <div class="actions">

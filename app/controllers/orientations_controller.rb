@@ -15,7 +15,7 @@ class OrientationsController < ApplicationController
     @orientation.site = @site
     if @orientation.save
       flash[:notice] = "Orientation completed "
-      redirect_to site_path(@site)
+      redirect_to orientation_path(@orientation)
     else
       flash.now[:error] = "Something went wrong"
       render 'new'
