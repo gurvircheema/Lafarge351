@@ -1,0 +1,27 @@
+<h1>Location</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Signed in at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logons.each do |logon| %>
+      <tr>
+        <td><%= logon.worker %></td>
+        <td><%= logon.site %></td>
+        <td><%= logon.created_at %></td>
+        <td><%= link_to 'Sign out now', "#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Sign in', logons_new_path %>

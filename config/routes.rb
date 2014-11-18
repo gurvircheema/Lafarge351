@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'logons/index'
+
+  get 'logons/new'
+
   devise_for :logins
 
   resources :companies
 
-  # workers
   resources :workers
-  # resources :contractors
-  # resources :employees
-  # resources :managers
 
   resources :hazards
 

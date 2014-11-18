@@ -32,7 +32,7 @@
 </div>
 <div class="field">
   <%= f.label :type %><br>
-  <%= f.select :type, [["Employee","Employee"], ["Manager","Manager"], ["Contractor","Contractor"]], :selected => "Employee" %>
+  <%= f.select :type, worker_type_options, :selected => "Employee" %>
 </div>
 <div class="actions">
   <%= f.submit %>

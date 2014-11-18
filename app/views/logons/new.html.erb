@@ -1,0 +1,27 @@
+<h2>Login</h2>
+<%= form_for @logon, url: logons_new_path do |f| %>
+  <% if @logon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@complogonany.errors.count, "error") %> prohibited this logon from being saved:</h2>
+
+      <ul>
+      <% @logon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :company %><br>
+    <%= f.select :company_id, Company.all.map {|company| [company.name,company.id]}, :selected => "f.object.company_id.to_i" %>
+  </div>
+  <div class="field">
+    <%= f.label :site %><br>
+    <%= f.text_field :site_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Back', logons_index_path %>
