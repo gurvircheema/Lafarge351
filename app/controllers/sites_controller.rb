@@ -21,17 +21,24 @@ class SitesController < ApplicationController
 
   def create
     @site = Site.new(site_params)
-    @site.save
-    redirect_to sites_path
+    if @site.save
+      flash[:notice] = "New site added"
+      redirect_to site_path(@site)
+    else
+      flash.now[:error]= "something went wrong"
+      render 'new'
+    end
   end
 
   def update
     @site.update(site_params)
+    flash[:notice] = "Site information updated"
     respond_with(@site)
   end
 
   def destroy
     @site.destroy
+    flash[:notice] = "Site removed"
     redirect_to sites_path
   end
 

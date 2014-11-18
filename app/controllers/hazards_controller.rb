@@ -19,17 +19,24 @@ class HazardsController < ApplicationController
 
   def create
     @hazard = Hazard.new(hazard_params)
-    @hazard.save
-    redirect_to hazards_path
+    if @site.save
+      flash[:notice] = "New hazard added"
+      redirect_to site_path(@site)
+    else
+      flash.now[:error] = "Something went wrong"
+      render 'new'
+    end
   end
 
   def update
     @hazard.update(hazard_params)
+    flash[:notice] = "Hazard information updated"
     respond_with(@hazard)
   end
 
   def destroy
     @hazard.destroy
+    flash[:notice] = "Hazard removed"
     redirect_to hazards_path
   end
 

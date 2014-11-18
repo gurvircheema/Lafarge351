@@ -19,16 +19,23 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    @company.save
-    redirect_to companies_path
+    if @site.save
+      redirect_to site_path(@site)
+      flash[:notice] = "New company added"
+    else
+      flash.now[:error] = "Something went wrong"
+      render 'new'
+    end
   end
 
   def update
     @company.update(company_params)
+    flash[:notice] = "Company information updated"
   end
 
   def destroy
     @company.destroy
+    flash[:notice] = "Company deleted"
     redirect_to companies_path
   end
 
