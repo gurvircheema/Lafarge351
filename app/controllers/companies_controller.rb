@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_action :require_superuser
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
