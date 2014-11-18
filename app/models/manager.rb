@@ -1,3 +1,3 @@
 class Manager < Worker
-	has_many :logins
+	has_one :login
 end
