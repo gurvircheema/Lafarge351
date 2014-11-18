@@ -8,6 +8,8 @@ class SitesController < ApplicationController
   end
 
   def show
+    @orientations = @site.orientations
+    @hazards = @site.hazards
   end
 
   def new

@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
   resources :companies
   resources :hazards
-  resources :orientations
-  resources :sites
+
+  resources :sites do
+    resources :orientations
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
