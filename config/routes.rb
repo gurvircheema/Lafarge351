@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   devise_for :logins
 
   resources :companies
+
+  # workers
+  resources :workers
+  # resources :contractors
+  # resources :employees
+  # resources :managers
+
   resources :hazards
 
   resources :sites do
