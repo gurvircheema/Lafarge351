@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118184307) do
+ActiveRecord::Schema.define(version: 20141118232539) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20141118184307) do
   end
 
   create_table "logins", force: true do |t|
-    t.integer  "site_id"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141118184307) do
     t.string   "last_sign_in_ip"
     t.integer  "loggable_id"
     t.string   "loggable_type"
+    t.boolean  "superuser"
   end
 
   create_table "logons", force: true do |t|
