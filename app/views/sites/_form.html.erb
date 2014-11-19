@@ -1,42 +1,6 @@
-<%= form_for(@site) do |f| %>
-  <% if @site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
-
-      <ul>
-      <% @site.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :manager_id %><br>
-    <%= f.select :manager_id, Manager.all.map {|manager| [manager.first_name,manager.id]}, :selected => f.object.manager_id.to_i %>
-  </div>
-
-  <div class="field">
-    <%= f.label :hazards %><br>
-    <%= form_tag hazards_path, :method => :put do %>
-    <ol>
-    <% for hazard in @allhazards %>
-      <li>
-        <%= check_box_tag "hazard_ids[]", hazard.id %>
-        <%= hazard.name %>
-      </li>
-    <% end %>
-    </ol>
-    <%= submit_tag "Add hazards" %>
-  <% end %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@site, html: { class: 'form' }) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :company_id, collection: Company.all %>
+  <%= f.input :manager_id, collection: Manager.all.map {|manager| [manager.first_name,manager.id]} %>
+  <%= f.button :submit %>
 <% end %>

@@ -1,8 +1,9 @@
 <h1>Editing worker</h1>
 
-<%= form_for @worker, as: :worker, url: worker_path(@worker) do |f| %>
-<%= render 'form', f: f %>
+<%= simple_form_for @worker, as: :worker, url: worker_path(@worker), html: { class: 'form' } do |f| %>
+  <%= render 'form', f: f %>
 <% end -%>
 
-<%= link_to 'Show', worker_path(@worker) %> |
-<%= link_to 'Back', workers_path %>
+<br/>
+<%= link_to 'Show', worker_path(@worker), class: 'btn btn-sm btn-default' %>
+<%= link_to 'Back', workers_path, class: 'btn btn-sm btn-default' %>

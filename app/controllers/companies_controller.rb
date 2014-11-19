@@ -30,8 +30,11 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company.update(company_params)
-    flash[:notice] = "Company information updated"
+    if @company.update(company_params)
+      redirect_to @company, notice: "Company information updated"
+    else
+      render 'edit'
+    end
   end
 
   def destroy

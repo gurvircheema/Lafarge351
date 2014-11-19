@@ -1,41 +1,11 @@
-<% if @worker.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@worker.errors.count, "error") %> prohibited this worker from being saved:</h2>
+<%= f.input :first_name %>
+<%= f.input :last_name %>
 
-    <ul>
-    <% @worker.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<div class="field">
-  <%= f.label :first_name %><br>
-  <%= f.text_field :first_name %>
-</div>
-<div class="field">
-  <%= f.label :last_name %><br>
-  <%= f.text_field :last_name %>
-</div>
 <%- if superuser? %>
-  <div class="field">
-    <%= f.label :company %><br>
-    <%= f.select :company_id, Company.all.map {|company| [company.name,company.id]}, :selected => f.object.company_id.to_i %>
-  </div>
+  <%= f.input :company_id, collection: Company.all %>
 <% end -%>
-<div class="field">
-  <%= f.label :contact %><br>
-  <%= f.text_field :contact %>
-</div>
-<div class="field">
-  <%= f.label :email %><br>
-  <%= f.text_field :email %>
-</div>
-<div class="field">
-  <%= f.label :type %><br>
-  <%= f.select :type, worker_type_options, :selected => @worker.type %>
-</div>
-<div class="actions">
-  <%= f.submit %>
-</div>
+
+<%= f.input :contact %>
+<%= f.input :email %>
+<%= f.input :type, collection: worker_type_options %>
+<%= f.button :submit %>
