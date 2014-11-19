@@ -1,10 +1,11 @@
 class WorkersController < ApplicationController
+  before_action :require_manager
   before_action :set_worker, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @workers = Worker.all
+    @workers = superuser? ? Worker.all : manager.company.workers
   end
 
   def show
@@ -19,6 +20,7 @@ class WorkersController < ApplicationController
 
   def create
     @worker = Worker.new(worker_params)
+    @worker.company_id = manager.company.id if manager?
     if @worker.save
       flash[:notice] = "New worker added"
       redirect_to worker_path(@worker)
@@ -46,6 +48,8 @@ class WorkersController < ApplicationController
     end
 
     def worker_params
-      params.require(:worker).permit(:first_name, :last_name, :contact, :email, :type, :company_id)
+      common_params = [:first_name, :last_name, :contact, :email, :type]
+      common_params << :company_id if superuser?
+      params.require(:worker).permit(*common_params)
     end
 end

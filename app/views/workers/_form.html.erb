@@ -18,10 +18,12 @@
   <%= f.label :last_name %><br>
   <%= f.text_field :last_name %>
 </div>
-<div class="field">
-  <%= f.label :company %><br>
-  <%= f.select :company_id, Company.all.map {|company| [company.name,company.id]}, :selected => f.object.company_id.to_i %>
-</div>
+<%- if superuser? %>
+  <div class="field">
+    <%= f.label :company %><br>
+    <%= f.select :company_id, Company.all.map {|company| [company.name,company.id]}, :selected => f.object.company_id.to_i %>
+  </div>
+<% end -%>
 <div class="field">
   <%= f.label :contact %><br>
   <%= f.text_field :contact %>
@@ -32,7 +34,7 @@
 </div>
 <div class="field">
   <%= f.label :type %><br>
-  <%= f.select :type, worker_type_options, :selected => "Employee" %>
+  <%= f.select :type, worker_type_options, :selected => @worker.type %>
 </div>
 <div class="actions">
   <%= f.submit %>
