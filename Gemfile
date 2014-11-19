@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'jbuilder',       '~> 2.0'
 
 gem 'bootstrap-sass'
-gem 'simple_form'
+gem 'simple_form',    '~> 3.1.0.rc2'
 gem 'quiet_assets'
 
 gem 'spring', group: :development
