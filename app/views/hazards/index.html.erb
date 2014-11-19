@@ -1,25 +1,33 @@
-<h1>Listing hazards</h1>
+<div class="page-header">
+  <h1>Listing Hazards</h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @hazards.each do |hazard| %>
+<% if @hazards.empty? %>
+  <div class="alert alert-warning">
+    No hazards exist right now
+  </div>
+<% else %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= hazard.name %></td>
-        <td><%= link_to 'Show', hazard %></td>
-        <td><%= link_to 'Edit', edit_hazard_path(hazard) %></td>
-        <td><%= link_to 'Destroy', hazard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @hazards.each do |hazard| %>
+        <tr>
+          <td><%= hazard.name %></td>
+          <td>
+            <%= link_to 'Show', hazard, class: 'btn btn-xs btn-default' %>
+            <%= link_to 'Edit', edit_hazard_path(hazard), class: 'btn btn-xs btn-default' %>
+            <%= link_to 'Destroy', hazard, method: :delete, class: 'btn btn-xs btn-default', data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end -%>
 
-<%= link_to 'Add new Hazard', new_hazard_path %>
+<%= link_to 'Add new Hazard', new_hazard_path, class: 'btn btn-sm btn-success' %>

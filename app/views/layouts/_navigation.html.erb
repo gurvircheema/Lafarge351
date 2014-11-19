@@ -13,6 +13,14 @@
       <ul class="nav navbar-nav pull-right">
         <%- if current_login %>
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+          <% if superuser? %>
+            <li class="<%= 'active' if current_page?(companies_path) %>"><%= link_to "Companies", companies_path %></li>
+            <li class="<%= 'active' if current_page?(hazards_path) %>"><%= link_to "Hazards", hazards_path %></li>
+          <% end %>
+          <% if manager? || superuser? %>
+            <li class="<%= 'active' if current_page?(sites_path) %>"><%= link_to "Sites", sites_path %></li>
+            <li class="<%= 'active' if current_page?(workers_path) %>"><%= link_to "Workers", workers_path %></li>
+          <% end %>
           <li><span class="navbar-text">Welcome <%= current_login.email %></span></li>
           <li><%= link_to('Logout', destroy_login_session_path, :method => :delete) %></li>
         <% else %>
