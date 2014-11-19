@@ -1,0 +1,15 @@
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-signin" }) do |f| %>
+  <h2 class="form-signin-heading">Log into your account</h2>
+  <%= f.label :email %>
+  <%= f.text_field :email, placeholder: "Email Address", class: "form-control" %>
+  <%= f.label :password %>
+  <%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+  <% if devise_mapping.rememberable? %>
+    <div class="checkbox">
+      <label class="checkbox" for="remember_me">
+      <%= f.check_box :remember_me %>
+      Remember me
+    </div>
+  <% end -%>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+<% end %>
