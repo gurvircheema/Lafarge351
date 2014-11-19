@@ -1,6 +1,9 @@
 <%= simple_form_for(@site, html: { class: 'form' }) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :company_id, collection: Company.all %>
-  <%= f.input :manager_id, collection: Manager.all.map {|manager| [manager.first_name,manager.id]} %>
+  <%- if superuser? %>
+    <%= f.input :name %>
+    <%= f.input :company_id, collection: Company.all %>
+    <%= f.input :manager_id, collection: Manager.all.map {|manager| [manager.first_name,manager.id]} %>
+  <% end -%>
+  <%= f.association :hazards, as: :check_boxes, wrapper: :vertical_radio_and_checkboxes %>
   <%= f.button :submit %>
 <% end %>

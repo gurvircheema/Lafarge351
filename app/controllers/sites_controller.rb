@@ -1,4 +1,6 @@
 class SitesController < ApplicationController
+  before_action :require_superuser, only: [:new, :create, :destroy]
+  before_action :require_manager
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -17,12 +19,10 @@ class SitesController < ApplicationController
   end
 
   def edit
-    @allhazards = Hazard.all
   end
 
   def create
     @site = Site.new(site_params)
-    @hazards = @site.hazards
 
     if @site.save
       flash[:notice] = "New site added"
@@ -45,17 +45,16 @@ class SitesController < ApplicationController
     redirect_to sites_path
   end
 
-  def add_hazard
-    Hazard.where(id: params[:hazard_ids]).update_all(available: true)
-    redirect_to site_path(@site)
-  end
-
   private
     def set_site
       @site = Site.find(params[:id])
     end
 
     def site_params
-      params.require(:site).permit(:name, :manager_id)
+      if superuser?
+        params.require(:site).permit(:name, :manager_id, :company_id, :hazard_ids => [])
+      else
+        params.require(:site).permit(:hazard_ids => [])
+      end
     end
 end
