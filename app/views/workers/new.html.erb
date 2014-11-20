@@ -1,6 +1,6 @@
 <h1>New worker</h1>
 
-<%= simple_form_for @worker, url: workers_path, html: { class: 'form' } do |f| %>
+<%= simple_form_for @worker, as: :worker, url: workers_path, html: { class: 'form' } do |f| %>
   <%= render 'form', f: f %>
 <% end -%>
 

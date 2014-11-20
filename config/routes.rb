@@ -2,17 +2,18 @@ Rails.application.routes.draw do
   devise_for :logins
 
   resources :companies
-
-  resources :workers
-
   resources :hazards
 
-  resources :sites, :collection => { :add_hazard => :put } do
-    resources :orientations
+  resources :workers do
+    resources :logins, only: [:new, :create]
   end
 
-  get 'logons/index'
-  get 'logons/new'
+  resources :sites do
+    resources :orientations, only: [:show, :new, :create]
+    resources :logins, only: [:new, :create]
+  end
+
+  resources :logons, only: [:index, :new, :create]
 
   root 'welcome#index'
 end

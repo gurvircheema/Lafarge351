@@ -33,6 +33,9 @@
             <%= link_to 'Show', worker_path(worker), class: 'btn btn-xs btn-default' %>
             <%= link_to 'Edit', edit_worker_path(worker), class: 'btn btn-xs btn-default' %>
             <%= link_to 'Destroy', worker_path(worker), method: :delete, class: 'btn btn-xs btn-default', data: { confirm: 'Are you sure?' } %>
+            <% if worker.is_a?(Manager) && worker.logins.empty? %>
+              <%= link_to 'Add Login', new_worker_login_path(worker), class: 'btn btn-xs btn-info' %>
+            <% end %>
           </td>
         </tr>
       <% end %>

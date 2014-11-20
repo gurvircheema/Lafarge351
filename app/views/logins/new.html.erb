@@ -1,0 +1,26 @@
+<%
+if @resource.is_a?(Manager)
+  url = worker_logins_path(@resource)
+  options = {readonly: true}
+  title = "Add Login for Manager '#{@resource.full_name}'"
+else
+  url = site_logins_path(@resource)
+  options = {}
+  title = "Add Login for Site '#{@resource.name}'"
+end
+%>
+
+<div class="page-header">
+  <h1><%= title %></h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <%= simple_form_for([@resource, @login], url: url) do |f| %>
+      <%= f.input :email, options %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+      <%= f.button :submit %>
+    <% end -%>
+  </div>
+</div>

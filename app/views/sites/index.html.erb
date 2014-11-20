@@ -24,7 +24,9 @@
           <td>
             <%= link_to 'Show', site, class: 'btn btn-xs btn-default' %>
             <%= link_to 'Edit', edit_site_path(site), class: 'btn btn-xs btn-default' %>
-            <%= link_to 'Destroy', site, method: :delete, class: 'btn btn-xs btn-default', data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Destroy', site, method: :delete, class: 'btn btn-xs btn-default', data: { confirm: 'Are you sure?' } if superuser? %>
+            <%= link_to 'Add Orientation', new_site_orientation_path(site), class: 'btn btn-xs btn-success' %>
+            <%= link_to 'Add Login', new_site_login_path(site), class: 'btn btn-xs btn-info' %>
           </td>
         </tr>
       <% end %>

@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Site:</strong>
-  <%= @orientation.site %>
+  <%= @orientation.site.name %>
 </p>
 
 <p>
-  <strong>Comment:</strong>
-  <%= @orientation.name %>
+  <strong>Worker:</strong>
+  <%= @orientation.worker.full_name %>
 </p>
 
+<p>
+  <strong>Valid:</strong>
+  <%= @orientation.valid_orientation? %>
+</p>
 
-<%= link_to 'Back', orientation_path %>
+<%= link_to 'Back', site_path(@orientation.site) %>
