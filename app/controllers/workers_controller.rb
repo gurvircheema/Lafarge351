@@ -48,7 +48,7 @@ class WorkersController < ApplicationController
     end
 
     def worker_params
-      common_params = [:first_name, :last_name, :contact, :email, :type]
+      common_params = [:first_name, :last_name, :contact, :email, :type, :company_id]
       common_params << :company_id if superuser?
       params.require(:worker).permit(*common_params)
     end

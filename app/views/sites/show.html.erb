@@ -9,6 +9,11 @@
 </p>
 
 <p>
+<% if @hazards.empty? %>
+  <div class="alert alert-warning">
+    No current hazards
+  </div>
+<% else %>
   <table>
     <thead>
       <tr>
@@ -17,15 +22,16 @@
     </thead>
 
     <tbody>
+      <ul>
       <% @hazards.each do |hazard| %>
           <tr>
-            <td width="500"><%= hazard.name %></td>
-            <td><%= link_to 'Show', hazard %></td>
-            <td><%= link_to 'Destroy', hazard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td width="500"><li><%= hazard.name %></li></td>
           </tr>
       <% end %>
+      </ul>
     </tbody>
   </table>
+<% end -%>
 </p>
 
 <%= link_to 'Edit', edit_site_path(@site) %> |

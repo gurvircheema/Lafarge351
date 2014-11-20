@@ -4,5 +4,6 @@ class Company < ActiveRecord::Base
 	has_many :managers
 
   has_many :workers
-	# has_many :sites
+
+  validates :name, :address, presence: true
 end

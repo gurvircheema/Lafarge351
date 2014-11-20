@@ -25,7 +25,7 @@
         <tr>
           <td><%= worker.first_name %></td>
           <td><%= worker.last_name %></td>
-          <td><%= Company.find(worker.company_id).name %></td>
+          <td><%= Company.find(worker.company_id).name rescue nil%></td>
           <td><%= worker.contact %></td>
           <td><%= worker.email %></td>
           <td><%= worker.type %></td>
