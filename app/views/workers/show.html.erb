@@ -10,7 +10,7 @@
 
 <p>
   <strong>Company:</strong>
-  <%= Company.find(@worker.company_id).name rescue nil%>
+  <%= @worker.company.try(:name) %>
 </p>
 
 <p>

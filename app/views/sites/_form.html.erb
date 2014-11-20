@@ -2,7 +2,7 @@
   <%- if superuser? %>
     <%= f.input :name %>
     <%= f.input :company_id, collection: Company.all %>
-    <%= f.input :manager_id, collection: Manager.all.map {|manager| [[manager.first_name,manager.last_name],manager.id]} %>
+    <%= f.input :manager_id, collection: Manager.all.map {|manager| [manager.full_name,manager.id]} %>
   <% end -%>
   <%= f.association :hazards, as: :check_boxes, wrapper: :vertical_radio_and_checkboxes %>
   <%= f.button :submit %>

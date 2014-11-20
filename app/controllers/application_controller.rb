@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :superuser?, :manager?, :manager
+  helper_method :superuser?, :manager?, :manager, :full_name
 
   protected
 
@@ -23,5 +23,9 @@ class ApplicationController < ActionController::Base
 
   def require_manager
     redirect_to root_path, alert: "You are not allowed to perform this operation" unless (manager? || superuser?)
+  end
+
+  def full_name
+    return manager.first_name + " " + manager.last_name
   end
 end

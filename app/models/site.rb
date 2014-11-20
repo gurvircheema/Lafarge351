@@ -8,6 +8,6 @@ class Site < ActiveRecord::Base
 	belongs_to :manager
 	has_many :logins
 
-  validates :name, :manager_id, presence: true
+  validates :name, :manager_id, :company_id, presence: true
 
 end
