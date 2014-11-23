@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :logins, only: [:new, :create]
   end
 
-  resources :logons, only: [:index, :new, :create]
+  resources :logons, only: [:index, :new, :create, :destroy]
 
   root 'welcome#index'
 end

@@ -1,5 +1,5 @@
 class LogonsController < ApplicationController
-  before_action only: [ :index, :update]
+  before_action only: [ :index, :new, :create, :destroy]
 
   respond_to :html
 
@@ -24,9 +24,10 @@ class LogonsController < ApplicationController
     end
   end
 
-  def update
-    @logon.update(logon_params)
-    flash[:notice] = "Logon information updated"
+  def destroy
+    @logon = Logon.find(params[:id])
+    @logon.destroy
+    flash[:notice] = "Signed Out"
     redirect_to logons_path
   end
 
