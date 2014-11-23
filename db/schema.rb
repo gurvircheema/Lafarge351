@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119072003) do
+ActiveRecord::Schema.define(version: 20141123162519) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20141119072003) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "orientations", ["site_id", "worker_id"], name: "one orientation of worker per site", unique: true, using: :btree
 
   create_table "site_hazards", force: true do |t|
     t.integer  "site_id"
