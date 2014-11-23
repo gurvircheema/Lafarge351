@@ -1,10 +1,14 @@
 class LogonsController < ApplicationController
-  before_action only: [ :index, :new, :create, :destroy]
+  before_action only: [ :index, :new, :create, :update]
 
   respond_to :html
 
   def index
-    @logons = Logon.all
+    if superuser?
+      @logons = Logon.all
+    else
+      @logons = Logon.where(created_at: Time.now.midnight..(Time.now.midnight + 1.day))
+    end
   end
 
   def new
@@ -24,9 +28,9 @@ class LogonsController < ApplicationController
     end
   end
 
-  def destroy
+  def update
     @logon = Logon.find(params[:id])
-    @logon.destroy
+    @logon.logout_time = Time.now
     flash[:notice] = "Signed Out"
     redirect_to logons_path
   end
