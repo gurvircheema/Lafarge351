@@ -14,4 +14,6 @@ gem 'bootstrap-sass'
 gem 'simple_form',    '~> 3.1.0.rc2'
 gem 'quiet_assets'
 
-gem 'spring', group: :development
+gem 'spring',         group: :development
+
+gem 'whenever',       :require => false
