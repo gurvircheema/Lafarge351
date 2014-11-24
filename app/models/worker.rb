@@ -1,10 +1,11 @@
 class Worker < ActiveRecord::Base
-	has_many :orientations
   belongs_to :company
-  has_many :logins, as: :loggable
 
-  validates :first_name, :last_name, presence: true
-  validates_presence_of :company
+	has_many :orientations
+  has_many :logins, as: :loggable
+  has_many :logons
+
+  validates :first_name, :last_name, :company, presence: true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, length: { maximum: 255 },

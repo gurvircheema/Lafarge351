@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     resources :logins, only: [:new, :create]
   end
 
-  resources :logons, only: [:index, :new, :create, :update]
+  resources :logons, only: [:index, :new, :create] do
+    get 'logout', on: :member
+  end
 
   root 'welcome#index'
 end

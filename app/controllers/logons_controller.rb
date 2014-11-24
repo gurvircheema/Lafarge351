@@ -1,13 +1,15 @@
 class LogonsController < ApplicationController
-  before_action only: [ :index, :new, :create, :update]
+  before_action :authenticate_login!
 
   respond_to :html
 
   def index
     if superuser?
       @logons = Logon.all
+    elsif manager?
+      @logons = Logon.active.where(:site_id => manager.sites.map(&:id))
     else
-      @logons = Logon.where(created_at: Time.now.midnight..(Time.now.midnight + 1.day))
+      @logons = Logon.active.where(:site_id => current_login.loggable.id)
     end
   end
 
@@ -17,27 +19,36 @@ class LogonsController < ApplicationController
 
   def create
     @logon = Logon.new(logon_params)
-    @site = Site.find(5)
-    @logon.site_id = @site.id
+
+    unless superuser? || manager?
+      @logon.site_id = current_login.loggable.id
+    end
+
     if @logon.save
       flash[:notice] = " Employee logged on"
       redirect_to logons_path
     else
-      flash.now[:error]= "something went wrong"
+      flash.now[:error]= "Check the errors below and proceed again."
       render 'new'
     end
   end
 
-  def update
+  def logout
     @logon = Logon.find(params[:id])
-    @logon.logout_time = Time.now
-    flash[:notice] = "Signed Out"
-    redirect_to logons_path
+    if @logon.update_attribute(:logout_time, Time.now)
+      redirect_to logons_path, notice: "Logged out #{@logon.worker.full_name}"
+    else
+      redirect_to logons_path, alert: "Unable to logout #{@logon.worker.full_name}, try again."
+    end
   end
 
   private
 
-    def logon_params
-      params.require(:logon).permit(:worker_id, :site_id, :logout_time)
+  def logon_params
+    if superuser? || manager?
+      params.require(:logon).permit(:worker_id, :site_id)
+    else
+      params.require(:logon).permit(:worker_id)
     end
+  end
 end

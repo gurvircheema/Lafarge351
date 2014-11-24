@@ -9,5 +9,4 @@ class Site < ActiveRecord::Base
 	has_many :logins
 
   validates :name, :manager_id, :company_id, presence: true
-
 end

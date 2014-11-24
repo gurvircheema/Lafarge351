@@ -1,5 +1,9 @@
 <%= simple_form_for(@logon, html: { class: 'form' }) do |f| %>
-  <%= f.input :site_id, collection: Company.all %>
+  <% if superuser? %>
+    <%= f.input :site_id, collection: Site.all %>
+  <% elsif manager? %>
+    <%= f.input :site_id, collection: manager.sites %>
+  <% end -%>
   <%= f.input :worker_id, collection: Worker.all.map {|worker| [worker.full_name,worker.id]} %>
   <%= f.button :submit %>
 <% end %>

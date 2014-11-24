@@ -21,6 +21,7 @@
             <li class="<%= 'active' if current_page?(sites_path) %>"><%= link_to "Sites", sites_path %></li>
             <li class="<%= 'active' if current_page?(workers_path) %>"><%= link_to "Workers", workers_path %></li>
           <% end %>
+          <li class="<%= 'active' if current_page?(logons_path) %>"><%= link_to "Logons", logons_path %></li>
           <li><span class="navbar-text">Welcome <%= current_login.email %></span></li>
           <li><%= link_to('Logout', destroy_login_session_path, :method => :delete) %></li>
         <% else %>

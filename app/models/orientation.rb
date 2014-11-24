@@ -7,6 +7,7 @@ class Orientation < ActiveRecord::Base
 
   validates_presence_of :worker_id
   validates_uniqueness_of :worker_id, :scope => :site_id
+
   def valid_orientation?
     (self.site.hazards.map(&:id) - self.hazards.map(&:id)).empty? && self.updated_at > 1.year.ago
   end

@@ -13,14 +13,15 @@
   <tbody>
     <% @logons.each do |logon| %>
       <tr>
-        <td><%= Worker.find(logon.worker_id).company.name %></td>
-        <td><%= Worker.find(logon.worker_id).full_name  %></td>
+        <td><%= logon.worker.company.name %></td>
+        <td><%= logon.worker.full_name  %></td>
         <td><%= logon.created_at.strftime("%H:%M:%S - %b %d, %g") %></td>
-        <td><% if logon.logout_time.present? %>
-                <%= logon.logout_time.strftime("%H:%M:%S - %b %d, %g") %>
-              <% else %>
-                <%= link_to 'Sign out now', logon_path(logon) , method: :patch, data: { confirm: 'Logging Out.. Are you sure?' }, class: "btn btn-xs btn-default btn-danger" %>
-              <% end %>
+        <td>
+          <% if logon.logout_time.present? %>
+            <%= logon.logout_time.strftime("%H:%M:%S - %b %d, %g") %>
+          <% else %>
+            <%= link_to 'Sign out now', logout_logon_path(logon) , data: { confirm: 'Logging Out.. Are you sure?' }, class: "btn btn-xs btn-default btn-danger" %>
+          <% end %>
         </td>
       </tr>
     <% end %>
