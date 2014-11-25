@@ -7,9 +7,9 @@ class LogonsController < ApplicationController
     if superuser?
       @logons = Logon.all
     elsif manager?
-      @logons = Logon.active.where(:site_id => manager.sites.map(&:id))
+      @logons = Logon.recent.where(:site_id => manager.sites.map(&:id))
     else
-      @logons = Logon.active.where(:site_id => current_login.loggable.id)
+      @logons = Logon.recent.where(:site_id => current_login.loggable.id)
     end
   end
 
