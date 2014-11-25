@@ -17,7 +17,6 @@ Company.create(name:"Graham construction and Engineering Ltd", address:"7216 Bro
 Company.create(name:"Pagilaro Projects Ltd", address:"3940 Charles St, Burnaby, BC V5C 3K8")
 
 Login.create(email: "admin@gurvircheema.com", password: "admin123", superuser: true)
-Login.create(email: "test@example.com", password: "test1234", superuser: false)
 
 Hazard.create(name: "Falls from working at height")
 Hazard.create(name: "Crush injuries in excavation work")

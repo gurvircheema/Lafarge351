@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+ruby '2.1.4'
+
 gem 'rails',          '4.1.7'
-gem 'mysql2'
+gem 'pg'
 gem 'devise'
 
 gem 'uglifier',       '>= 1.3.0'
@@ -17,3 +19,5 @@ gem 'quiet_assets'
 gem 'spring',         group: :development
 
 gem 'whenever',       :require => false
+
+gem 'rails_12factor', group: :production
