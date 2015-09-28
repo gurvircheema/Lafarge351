@@ -1,28 +1,7 @@
-== README
+This is a management tool made for 'Lafarge Contruction Company' as a class project.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+It keeps track of employees and contractors working for lafarge at all locations.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+All employees are logged out automatically and email is sent to the admin/site manager about employees who did not sign out on their own.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
